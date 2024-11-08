@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Semenova_UniversityKursachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Faculty">
+    <Key>
+      <PropertyRef Name="Faculty_ID" />
+    </Key>
+    <Property Name="Faculty_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Faculty_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FIO_decan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Num_room" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Num_korpus" Type="Int32" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pulpit" Relationship="Self.FK_Pulpit_FACULTY" FromRole="Faculty" ToRole="Pulpit" />
+  </EntityType>
+  <EntityType Name="Load">
+    <Key>
+      <PropertyRef Name="Load_ID" />
+    </Key>
+    <Property Name="Load_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Teacher_ID" Type="Int32" Nullable="false" />
+    <Property Name="Subject_ID" Type="Int32" Nullable="false" />
+    <Property Name="Academic_Year" Type="Int32" Nullable="false" />
+    <Property Name="Semestr" Type="Int32" Nullable="false" />
+    <Property Name="Grupa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Kol_students" Type="Int32" Nullable="false" />
+    <Property Name="Final_control" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Subject" Relationship="Self.FK_Load_Subject" FromRole="Load" ToRole="Subject" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK_Load_Teacher" FromRole="Load" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Pulpit">
+    <Key>
+      <PropertyRef Name="Pulpit_ID" />
+    </Key>
+    <Property Name="Pulpit_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Faculty_ID" Type="Int32" Nullable="false" />
+    <Property Name="Pulpit_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FIO_manager" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Num_room" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Num_korpus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Kol_teacher" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Faculty" Relationship="Self.FK_Pulpit_FACULTY" FromRole="Pulpit" ToRole="Faculty" />
+    <NavigationProperty Name="Subject" Relationship="Self.FK_Subject_Pulpit" FromRole="Pulpit" ToRole="Subject" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK_Teacher_Pulpit" FromRole="Pulpit" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="Subject_ID" />
+    </Key>
+    <Property Name="Subject_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pulpit_ID" Type="Int32" Nullable="false" />
+    <Property Name="Subject_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Kol_hour" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Cycle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Load" Relationship="Self.FK_Load_Subject" FromRole="Subject" ToRole="Load" />
+    <NavigationProperty Name="Pulpit" Relationship="Self.FK_Subject_Pulpit" FromRole="Subject" ToRole="Pulpit" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="Teacher_ID" />
+    </Key>
+    <Property Name="Teacher_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pulpit_ID" Type="Int32" Nullable="false" />
+    <Property Name="Famil" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Year_work" Type="Int32" Nullable="false" />
+    <Property Name="Experience" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Job_title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Load" Relationship="Self.FK_Load_Teacher" FromRole="Teacher" ToRole="Load" />
+    <NavigationProperty Name="Pulpit" Relationship="Self.FK_Teacher_Pulpit" FromRole="Teacher" ToRole="Pulpit" />
+  </EntityType>
+  <Association Name="FK_Pulpit_FACULTY">
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
+    <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="Faculty_ID" />
+      </Principal>
+      <Dependent Role="Pulpit">
+        <PropertyRef Name="Faculty_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Load_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="Load" Type="Self.Load" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="Subject_ID" />
+      </Principal>
+      <Dependent Role="Load">
+        <PropertyRef Name="Subject_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Load_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Load" Type="Self.Load" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="Teacher_ID" />
+      </Principal>
+      <Dependent Role="Load">
+        <PropertyRef Name="Teacher_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_Pulpit">
+    <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="1" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pulpit">
+        <PropertyRef Name="Pulpit_ID" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="Pulpit_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Pulpit">
+    <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pulpit">
+        <PropertyRef Name="Pulpit_ID" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="Pulpit_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Semenova_UniversityKursachEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Faculty" EntityType="Self.Faculty" />
+    <EntitySet Name="Load" EntityType="Self.Load" />
+    <EntitySet Name="Pulpit" EntityType="Self.Pulpit" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+    <AssociationSet Name="FK_Pulpit_FACULTY" Association="Self.FK_Pulpit_FACULTY">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="Pulpit" EntitySet="Pulpit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Load_Subject" Association="Self.FK_Load_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Load" EntitySet="Load" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Load_Teacher" Association="Self.FK_Load_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Load" EntitySet="Load" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_Pulpit" Association="Self.FK_Subject_Pulpit">
+      <End Role="Pulpit" EntitySet="Pulpit" />
+      <End Role="Subject" EntitySet="Subject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Pulpit" Association="Self.FK_Teacher_Pulpit">
+      <End Role="Pulpit" EntitySet="Pulpit" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

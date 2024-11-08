@@ -1,0 +1,53 @@
+﻿<Page x:Class="Kursach.AddEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursach"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddEditPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Наименование факультета" FontSize="15" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="Описание" FontSize="15" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="ФИО декана" FontSize="15" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="Телефон" FontSize="15" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="корпус" FontSize="15" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="комната" FontSize="15" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+
+        <TextBox Grid.Column="1" Grid.Row="0" Height="30" Width="200" HorizontalAlignment="Left" Text="{Binding Faculty_name}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="1" Height="30" Width="200" HorizontalAlignment="Left" Text="{Binding Description}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="2" Height="30" Width="200" HorizontalAlignment="Left" Text="{Binding FIO_decan}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="3" Height="30" Width="200" HorizontalAlignment="Left" Text="{Binding Phone}"></TextBox>
+        
+        <TextBox Grid.Column="1" Grid.Row="4" Height="30" Width="200" HorizontalAlignment="Left" Text="{Binding Num_korpus}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="5" Height="30" Width="200" HorizontalAlignment="Left" Text="{Binding Num_room}"></TextBox>
+
+        <StackPanel Grid.Column="2" Grid.Row="2" Grid.RowSpan="3" HorizontalAlignment="Center" Margin="250, 0, 0, 0" >
+            <TextBlock Text="Логотип" FontSize="15" Height="20" MinHeight="20" Width="150" Margin="5"></TextBlock>
+            <Image x:Name="LogoImage"   Height="150" Width="150" VerticalAlignment="Top"
+                   Source="{Binding Image, TargetNullValue=Resources\\zagl.png}"/>
+
+
+        </StackPanel>
+        <Button Content="Изменить" Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Center" Margin="250, 0, 0, 0"  Name="ChangePictureBtn" Click="ChangePictureBtn_Click"></Button>
+
+        <Button Name="SaveButton" Content="Сохранить" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Click="SaveButton_Click"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+    </Grid>
+</Page>

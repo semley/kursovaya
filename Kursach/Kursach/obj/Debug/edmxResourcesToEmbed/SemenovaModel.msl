@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Semenova_UniversityKursachModelContainer" CdmEntityContainer="Semenova_UniversityKursachEntities">
+    <EntitySetMapping Name="Faculty">
+      <EntityTypeMapping TypeName="Semenova_UniversityKursachModel.Faculty">
+        <MappingFragment StoreEntitySet="Faculty">
+          <ScalarProperty Name="Faculty_ID" ColumnName="Faculty_ID" />
+          <ScalarProperty Name="Faculty_name" ColumnName="Faculty_name" />
+          <ScalarProperty Name="FIO_decan" ColumnName="FIO_decan" />
+          <ScalarProperty Name="Num_room" ColumnName="Num_room" />
+          <ScalarProperty Name="Num_korpus" ColumnName="Num_korpus" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Load">
+      <EntityTypeMapping TypeName="Semenova_UniversityKursachModel.Load">
+        <MappingFragment StoreEntitySet="Load">
+          <ScalarProperty Name="Load_ID" ColumnName="Load_ID" />
+          <ScalarProperty Name="Teacher_ID" ColumnName="Teacher_ID" />
+          <ScalarProperty Name="Subject_ID" ColumnName="Subject_ID" />
+          <ScalarProperty Name="Academic_Year" ColumnName="Academic_Year" />
+          <ScalarProperty Name="Semestr" ColumnName="Semestr" />
+          <ScalarProperty Name="Grupa" ColumnName="Grupa" />
+          <ScalarProperty Name="Kol_students" ColumnName="Kol_students" />
+          <ScalarProperty Name="Final_control" ColumnName="Final_control" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pulpit">
+      <EntityTypeMapping TypeName="Semenova_UniversityKursachModel.Pulpit">
+        <MappingFragment StoreEntitySet="Pulpit">
+          <ScalarProperty Name="Pulpit_ID" ColumnName="Pulpit_ID" />
+          <ScalarProperty Name="Faculty_ID" ColumnName="Faculty_ID" />
+          <ScalarProperty Name="Pulpit_name" ColumnName="Pulpit_name" />
+          <ScalarProperty Name="FIO_manager" ColumnName="FIO_manager" />
+          <ScalarProperty Name="Num_room" ColumnName="Num_room" />
+          <ScalarProperty Name="Num_korpus" ColumnName="Num_korpus" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Kol_teacher" ColumnName="Kol_teacher" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subject">
+      <EntityTypeMapping TypeName="Semenova_UniversityKursachModel.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="Subject_ID" ColumnName="Subject_ID" />
+          <ScalarProperty Name="Pulpit_ID" ColumnName="Pulpit_ID" />
+          <ScalarProperty Name="Subject_name" ColumnName="Subject_name" />
+          <ScalarProperty Name="Kol_hour" ColumnName="Kol_hour" />
+          <ScalarProperty Name="Cycle" ColumnName="Cycle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teacher">
+      <EntityTypeMapping TypeName="Semenova_UniversityKursachModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="Teacher_ID" ColumnName="Teacher_ID" />
+          <ScalarProperty Name="Pulpit_ID" ColumnName="Pulpit_ID" />
+          <ScalarProperty Name="Famil" ColumnName="Famil" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Year_work" ColumnName="Year_work" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="Job_title" ColumnName="Job_title" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

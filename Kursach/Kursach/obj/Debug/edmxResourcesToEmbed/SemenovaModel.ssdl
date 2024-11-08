@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Semenova_UniversityKursachModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Faculty">
+    <Key>
+      <PropertyRef Name="Faculty_ID" />
+    </Key>
+    <Property Name="Faculty_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Faculty_name" Type="varchar(max)" Nullable="false" />
+    <Property Name="FIO_decan" Type="varchar(max)" Nullable="false" />
+    <Property Name="Num_room" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Num_korpus" Type="int" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Load">
+    <Key>
+      <PropertyRef Name="Load_ID" />
+    </Key>
+    <Property Name="Load_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Teacher_ID" Type="int" Nullable="false" />
+    <Property Name="Subject_ID" Type="int" Nullable="false" />
+    <Property Name="Academic_Year" Type="int" Nullable="false" />
+    <Property Name="Semestr" Type="int" Nullable="false" />
+    <Property Name="Grupa" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Kol_students" Type="int" Nullable="false" />
+    <Property Name="Final_control" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pulpit">
+    <Key>
+      <PropertyRef Name="Pulpit_ID" />
+    </Key>
+    <Property Name="Pulpit_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Faculty_ID" Type="int" Nullable="false" />
+    <Property Name="Pulpit_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FIO_manager" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Num_room" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Num_korpus" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
+    <Property Name="Kol_teacher" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="Subject_ID" />
+    </Key>
+    <Property Name="Subject_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pulpit_ID" Type="int" Nullable="false" />
+    <Property Name="Subject_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Kol_hour" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Cycle" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="Teacher_ID" />
+    </Key>
+    <Property Name="Teacher_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pulpit_ID" Type="int" Nullable="false" />
+    <Property Name="Famil" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar(max)" />
+    <Property Name="Birthday" Type="date" Nullable="false" />
+    <Property Name="Year_work" Type="int" Nullable="false" />
+    <Property Name="Experience" Type="int" StoreGeneratedPattern="Computed" />
+    <Property Name="Job_title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Load_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="Load" Type="Self.Load" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="Subject_ID" />
+      </Principal>
+      <Dependent Role="Load">
+        <PropertyRef Name="Subject_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Load_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Load" Type="Self.Load" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="Teacher_ID" />
+      </Principal>
+      <Dependent Role="Load">
+        <PropertyRef Name="Teacher_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pulpit_FACULTY">
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
+    <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="Faculty_ID" />
+      </Principal>
+      <Dependent Role="Pulpit">
+        <PropertyRef Name="Faculty_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_Pulpit">
+    <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="1" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pulpit">
+        <PropertyRef Name="Pulpit_ID" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="Pulpit_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Pulpit">
+    <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pulpit">
+        <PropertyRef Name="Pulpit_ID" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="Pulpit_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище Semenova_UniversityKursachModelContainer">
+    <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Load" EntityType="Self.Load" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pulpit" EntityType="Self.Pulpit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Load_Subject" Association="Self.FK_Load_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Load" EntitySet="Load" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Load_Teacher" Association="Self.FK_Load_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Load" EntitySet="Load" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pulpit_FACULTY" Association="Self.FK_Pulpit_FACULTY">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="Pulpit" EntitySet="Pulpit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_Pulpit" Association="Self.FK_Subject_Pulpit">
+      <End Role="Pulpit" EntitySet="Pulpit" />
+      <End Role="Subject" EntitySet="Subject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Pulpit" Association="Self.FK_Teacher_Pulpit">
+      <End Role="Pulpit" EntitySet="Pulpit" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

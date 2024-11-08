@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3c67e96bb73243a29b27f1b9f3f016f5" Name="Diagram1">
+        <EntityTypeShape EntityType="Semenova_UniversityKursachModel.Faculty" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Semenova_UniversityKursachModel.Load" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Semenova_UniversityKursachModel.Pulpit" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Semenova_UniversityKursachModel.Subject" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Semenova_UniversityKursachModel.Teacher" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="Semenova_UniversityKursachModel.FK_Pulpit_FACULTY" ManuallyRouted="false" />
+        <AssociationConnector Association="Semenova_UniversityKursachModel.FK_Load_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="Semenova_UniversityKursachModel.FK_Load_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="Semenova_UniversityKursachModel.FK_Subject_Pulpit" ManuallyRouted="false" />
+        <AssociationConnector Association="Semenova_UniversityKursachModel.FK_Teacher_Pulpit" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
